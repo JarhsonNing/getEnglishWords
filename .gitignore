@@ -1,0 +1,4 @@
+a.js
+*.txt
+/.idea/
+/node_modules/
