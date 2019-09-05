@@ -2,7 +2,7 @@ const $axios = require("axios");
 
 let axios = $axios.create({
     baseURL:"https://www.koolearn.com",
-    timeout:6000
+    timeout:60000
 });
 // 添加请求拦截器
 axios.interceptors.request.use(
@@ -21,7 +21,8 @@ axios.interceptors.request.use(
 );
 
 // 添加响应拦截器，
-axios.interceptors.response.use((res) => {
+axios.interceptors.response.use(
+    res => {
         if(res.status === 200){
             return res.data
         }else{

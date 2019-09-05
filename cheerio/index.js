@@ -17,10 +17,24 @@ class getInfo {
         const $ = cheerio.load(html);
         let word = {
             wordSpell: '',
+            read:[],
+            example:[],
             meaning: []
         };
         $('h1.word-spell').each((idx, ele) => {
             word.wordSpell = $(ele).text()
+        });
+        $('span.word-spell-audio').each((idx, ele) => {
+            word.read.push({
+                yb:$(ele).prev().text(),
+                audio:$(ele).attr('data-url')
+            })
+        });
+        $('#dict-chart-examples').prev().children("li").each((idx, ele) => {
+            word.example.push({
+                source:$(ele).html().split("<br>")[0],
+                target:$(ele).html().split("<br>")[1]
+            })
         });
         $('li.clearfix').each((idx, ele) => {
             word.meaning.push({
